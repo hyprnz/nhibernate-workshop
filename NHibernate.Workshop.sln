@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CmdLine", "CmdLine\CmdLine.csproj", "{5CFC8C6A-DAAE-4DAA-BCB1-39CFB57796F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A90397A-F3EF-4FCB-9A8A-4DD162D74223}"
+	ProjectSection(SolutionItems) = preProject
+		BuildSqlServer.ps1 = BuildSqlServer.ps1
+		StartSqlServer.ps1 = StartSqlServer.ps1
+		StopSqlServer.ps1 = StopSqlServer.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CFC8C6A-DAAE-4DAA-BCB1-39CFB57796F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFC8C6A-DAAE-4DAA-BCB1-39CFB57796F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFC8C6A-DAAE-4DAA-BCB1-39CFB57796F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFC8C6A-DAAE-4DAA-BCB1-39CFB57796F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14ED62C8-8F51-4ABF-A8FF-B2B2F32BD7A9}
+	EndGlobalSection
+EndGlobal
