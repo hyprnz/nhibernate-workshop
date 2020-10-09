@@ -22,12 +22,13 @@ namespace CmdLine
                     txn.Commit();
                 }
 
-                using (var txn = sessionFactory.OpenSession())
+                using (var txn = session.BeginTransaction())
                 {
                     foreach (var log in session.Query<Log>())
                     {
                         Console.WriteLine($"{log.Id}: {log.Text}");
                     }
+                    txn.Commit();
                 }
             }
         }
