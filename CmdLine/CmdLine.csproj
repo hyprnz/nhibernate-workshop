@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.2" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.2.9" />
     <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="3.2.9" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
