@@ -19,7 +19,7 @@ namespace CmdLine.DataAccess
                 {
                     try
                     {
-                        var target = invocation.InvocationTarget as IHaveSession;
+                        var target = invocation.InvocationTarget as INeedSession;
                         target.Session = session;
                         invocation.Proceed();
                         target.Session = null;

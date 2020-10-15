@@ -4,11 +4,11 @@ using System;
 
 namespace CmdLine.Repositories
 {
-    public interface IHaveSession
+    public interface INeedSession
     {
         ISession Session { get; set; }
     }
-    public interface ITemplateRepository : IHaveSession
+    public interface ITemplateRepository : INeedSession
     {
         Template GetById(Guid id);
         Guid Save(Template template);

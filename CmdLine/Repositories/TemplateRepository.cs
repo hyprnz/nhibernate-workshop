@@ -18,24 +18,26 @@ namespace CmdLine.Repositories
 
         public Template GetById(Guid id)
         {
-            Template template = null;
+            return Session.Get<Template>(id);
+            //Template template = null;
             //using (var session = SessionFactory.OpenSession())
             //{
             //    using (var txn = session.BeginTransaction())
             //    {
             //        try
             //        {
-                        template = Session.Get<Template>(id);
+            //            template = Session.Get<Template>(id);
             //            txn.Commit();
             //        }
             //        catch (Exception ex)
             //        {
             //            txn.Rollback();
+            //            throw;
             //        }
             //    }
             //    session.Close();
             //}
-            return template;
+            //return template;
         }
     }
 }
