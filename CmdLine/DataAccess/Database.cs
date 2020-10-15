@@ -49,7 +49,9 @@ namespace CmdLine.DataAccess
                 .Database(
                     MsSqlConfiguration.MsSql2012.ConnectionString(ConnectionString)
                 )
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Database>())
+                .Mappings(m => m.FluentMappings
+                    .AddFromAssemblyOf<Database>()
+                    .Conventions.Add(FluentNHibernate.Conventions.Helpers.ForeignKey.EndsWith("Id")))
                 .BuildSessionFactory();
         }
 

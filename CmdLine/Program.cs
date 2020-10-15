@@ -24,6 +24,8 @@ namespace CmdLine
             {
                 var templateRepository = scope.Resolve<ITemplateRepository>();
                 var template = new Template() { Name = "Template42" };
+                var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
+                template.Diagnoses.Add(diagnosis1);
                 var objectId = templateRepository.Save(template);
 
                 var retrieved = templateRepository.GetById(objectId);

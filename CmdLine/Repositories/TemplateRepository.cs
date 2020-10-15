@@ -1,6 +1,7 @@
 ﻿using Autofac.Extras.DynamicProxy;
 using CmdLine.DataAccess;
 using CmdLine.Domain;
+using FluentNHibernate.Utils;
 using NHibernate;
 using System;
 
