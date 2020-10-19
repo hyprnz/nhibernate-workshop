@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using Shared.Domain;
 using System;
 
 namespace CmdLine.DataAccess
@@ -11,7 +12,7 @@ namespace CmdLine.DataAccess
         /// <typeparam name="T"></typeparam>
         /// <param name="id"></param>
         /// <returns></returns>
-        T Get<T>(Guid id);
+        T Get<T>(Guid id) where T : DomainObject;
 
         /// <summary>
         /// Persist the given transient instance, first assigning a generated identifier.
@@ -20,7 +21,7 @@ namespace CmdLine.DataAccess
         /// <returns>The generated identifier</returns>
         /// <remarks>Save will use the current value of the identifier property if the Assigned generator 
         /// is used.</remarks>
-        Guid Save(object obj);
+        Guid Save(DomainObject obj);
 
         ISession Session { get; }
     }

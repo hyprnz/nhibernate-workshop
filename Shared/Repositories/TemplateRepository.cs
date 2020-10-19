@@ -16,11 +16,11 @@ namespace Shared.Repositories
             return SessionAccessor.Save(template);
         }
 
-        private ISessionAccessor SessionAccessor { get; }
-
         public Template GetById(Guid id)
         {
             return SessionAccessor.Get<Template>(id);
         }
+
+        private ISessionAccessor SessionAccessor { get; }
     }
 }

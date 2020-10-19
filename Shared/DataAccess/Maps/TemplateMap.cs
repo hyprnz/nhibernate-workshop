@@ -3,12 +3,10 @@ using Shared.Domain;
 
 namespace Shared.DataAccess.Maps
 {
-    public class TemplateMap : ClassMap<Template>
+    public class TemplateMap : DomainObjectMap<Template>
     {
         public TemplateMap()
         {
-            Id(_ => _.Id);
-
             Map(_ => _.Name);
 
             HasMany(_ => _.Diagnoses)
