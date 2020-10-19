@@ -12,8 +12,6 @@ namespace CmdLine
     {
         static void Main(string[] args)
         {
-            Database.RunMigrations(); // Cheap operation if all migrations have already been applied [Manfred]
-
             ConfigureServices();
 
             using (var scope = Container.BeginLifetimeScope())

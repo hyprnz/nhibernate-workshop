@@ -44,6 +44,8 @@ namespace Shared.DataAccess
 
         public static ISessionFactory CreateSessionFactory()
         {
+            RunMigrations();
+
             return Fluently.Configure()
                 .Database(
                     MsSqlConfiguration.MsSql2012.ConnectionString(ConnectionString)
