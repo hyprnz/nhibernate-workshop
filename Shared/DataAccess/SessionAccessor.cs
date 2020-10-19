@@ -1,9 +1,8 @@
-﻿using CmdLine.Repositories;
+﻿using CmdLine.DataAccess;
 using NHibernate;
 using System;
-using System.Diagnostics;
 
-namespace CmdLine.DataAccess
+namespace Shared.DataAccess
 {
 
     public class SessionAccessor : ISessionAccessor
@@ -15,7 +14,7 @@ namespace CmdLine.DataAccess
 
         public Guid Save(object obj)
         {
-            return (Guid) Session.Save(obj);
+            return (Guid)Session.Save(obj);
         }
 
         public ISession Session {

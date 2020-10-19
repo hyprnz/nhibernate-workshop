@@ -1,7 +1,7 @@
 ﻿using NHibernate;
 using System;
 
-namespace CmdLine.DataAccess
+namespace Shared.DataAccess
 {
     public class TransactionInterceptor : Castle.DynamicProxy.IInterceptor
     {
@@ -43,6 +43,6 @@ namespace CmdLine.DataAccess
         internal static System.Threading.AsyncLocal<ISession> AsyncLocalSession = new System.Threading.AsyncLocal<ISession>();
         // Details about AsyncLocal<T> at https://docs.microsoft.com/en-us/dotnet/api/system.threading.asynclocal-1 [Manfred]
 
-        private NHibernate.ISessionFactory SessionFactory { get; }
+        private ISessionFactory SessionFactory { get; }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace CmdLine.Domain
+namespace Shared.Domain
 {
     public class Template
     {

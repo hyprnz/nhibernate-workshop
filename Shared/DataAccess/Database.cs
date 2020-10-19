@@ -1,12 +1,11 @@
-﻿using CmdLine.Domain;
-using FluentMigrator.Runner;
+﻿using FluentMigrator.Runner;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.Extensions.DependencyInjection;
 using NHibernate;
 using System;
 
-namespace CmdLine.DataAccess
+namespace Shared.DataAccess
 {
     public class Database
     {
@@ -36,7 +35,7 @@ namespace CmdLine.DataAccess
                     // Set the connection string
                     .WithGlobalConnectionString(ConnectionString)
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(Program).Assembly).For.Migrations())
+                    .ScanIn(typeof(Database).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 // Build the service provider

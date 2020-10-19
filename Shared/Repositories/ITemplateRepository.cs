@@ -1,7 +1,7 @@
-﻿using CmdLine.Domain;
+﻿using Shared.Domain;
 using System;
 
-namespace CmdLine.Repositories
+namespace Shared.Repositories
 {
     public interface ITemplateRepository
     {

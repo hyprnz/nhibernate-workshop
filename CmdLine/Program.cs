@@ -1,8 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using CmdLine.DataAccess;
-using CmdLine.Domain;
-using CmdLine.Repositories;
+using Shared.DataAccess;
+using Shared.Domain;
+using Shared.Repositories;
 using System;
 
 namespace CmdLine
@@ -18,14 +19,18 @@ namespace CmdLine
             using (var scope = Container.BeginLifetimeScope())
             {
                 var templateRepository = scope.Resolve<ITemplateRepository>();
-                var template = new Template() { Name = "Template42" };
-                var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
-                template.Diagnoses.Add(diagnosis1);
-                var objectId = templateRepository.Save(template);
-
-                var retrieved = templateRepository.GetById(objectId);
+                Template retrieved = DoSomethingWithRepository(templateRepository);
                 Console.WriteLine($"{retrieved.Name}");
             }
+        }
+
+        private static Template DoSomethingWithRepository(ITemplateRepository templateRepository)
+        {
+            var template = new Template() { Name = "Template42" };
+            var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
+            template.Diagnoses.Add(diagnosis1);
+            var objectId = templateRepository.Save(template);
+            return templateRepository.GetById(objectId);
         }
 
         private static void ConfigureServices()

@@ -1,9 +1,7 @@
 ﻿using FluentMigrator;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CmdLine.DataAccess
+namespace Shared.DataAccess.Migrations
 {
     [Migration(20201009_1511)]
     public class M20201009_AddTemplateTable : Migration

@@ -1,7 +1,7 @@
-﻿using CmdLine.Domain;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
+using Shared.Domain;
 
-namespace CmdLine.DataAccess
+namespace Shared.DataAccess
 {
     public class LogMap : ClassMap<Log>
     {

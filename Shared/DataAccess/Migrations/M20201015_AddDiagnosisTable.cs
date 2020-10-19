@@ -1,9 +1,7 @@
 ﻿using FluentMigrator;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CmdLine.DataAccess.Migrations
+namespace Shared.DataAccess.Migrations
 {
     [Migration(20201015_1518)]
     public class M20201015_AddDiagnosisTable : Migration
