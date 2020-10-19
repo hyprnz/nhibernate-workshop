@@ -1,5 +1,4 @@
-﻿using CmdLine.Repositories;
-using NHibernate;
+﻿using NHibernate;
 using System;
 
 namespace CmdLine.DataAccess
@@ -19,22 +18,30 @@ namespace CmdLine.DataAccess
                 {
                     try
                     {
-                        var target = invocation.InvocationTarget as INeedSession;
-                        target.Session = session;
-                        invocation.Proceed();
-                        target.Session = null;
-                        txn.Commit();
+                        AsyncLocalSession.Value = session;
+                        try
+                        {
+                            invocation.Proceed();
+                            txn.Commit();
+                        }
+                        finally
+                        {
+                            AsyncLocalSession.Value = null;
+                        }
                     }
                     catch (Exception ex)
                     {
                         txn.Rollback();
                         throw;
-                        // TODO: retry logic subject to error code
+                        // TODO: retry depending on error code
                     }
                 }
                 session.Close();
             }
         }
+
+        internal static System.Threading.AsyncLocal<ISession> AsyncLocalSession = new System.Threading.AsyncLocal<ISession>();
+        // Details about AsyncLocal<T> at https://docs.microsoft.com/en-us/dotnet/api/system.threading.asynclocal-1 [Manfred]
 
         private NHibernate.ISessionFactory SessionFactory { get; }
     }

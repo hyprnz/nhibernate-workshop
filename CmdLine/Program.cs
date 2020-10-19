@@ -1,22 +1,17 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
-using Castle.DynamicProxy;
 using CmdLine.DataAccess;
 using CmdLine.Domain;
 using CmdLine.Repositories;
-using FluentNHibernate.Conventions.Helpers.Prebuilt;
-using NHibernate;
 using System;
 
 namespace CmdLine
 {
     static class Program
     {
-        private static IContainer Container { get; set; }
-
         static void Main(string[] args)
         {
-            Database.RunMigrations();
+            Database.RunMigrations(); // Cheap operation if all migrations have already been applied [Manfred]
 
             ConfigureServices();
 
@@ -35,20 +30,28 @@ namespace CmdLine
 
         private static void ConfigureServices()
         {
-            // Create your builder.
-            var builder = new ContainerBuilder();
+            // This method is also called the "Composition Root" [Manfred]
 
-            // Usually you're only interested in exposing the type
-            // via its interface:
-            builder.RegisterType<TemplateRepository>().As<ITemplateRepository>().EnableInterfaceInterceptors();
+            // Create your container builder.
+            var containerBuilder = new ContainerBuilder();
 
-            // Register TransactionInterceptor
-            SessionFactory = Database.CreateSessionFactory(); // should be called only once
-            builder.Register(_ => new TransactionInterceptor(SessionFactory));
+            // Usually you're only interested in exposing the type via its interface:
+            containerBuilder.RegisterType<TemplateRepository>()
+                   .As<ITemplateRepository>()
+                   .EnableInterfaceInterceptors()
+                   .InterceptedBy(typeof(TransactionInterceptor))
+                   ;
+            containerBuilder.RegisterType<SessionAccessor>()
+                   .As<ISessionAccessor>()
+                   ;
 
-            Container = builder.Build();
+            var sessionFactory = Database.CreateSessionFactory(); // should be called once only [Manfred]
+            containerBuilder.Register(_ => new TransactionInterceptor(sessionFactory));
+
+            // Build the container:
+            Container = containerBuilder.Build();
         }
 
-        private static ISessionFactory SessionFactory { get; set; }
+        private static IContainer Container { get; set; }
     }
 }

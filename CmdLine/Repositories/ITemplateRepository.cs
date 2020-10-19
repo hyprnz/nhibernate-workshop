@@ -1,14 +1,9 @@
 ﻿using CmdLine.Domain;
-using NHibernate;
 using System;
 
 namespace CmdLine.Repositories
 {
-    public interface INeedSession
-    {
-        ISession Session { get; set; }
-    }
-    public interface ITemplateRepository : INeedSession
+    public interface ITemplateRepository
     {
         Template GetById(Guid id);
         Guid Save(Template template);
