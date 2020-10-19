@@ -3,9 +3,9 @@ using System;
 
 namespace Shared.DataAccess
 {
-    public class TransactionInterceptor : Castle.DynamicProxy.IInterceptor
+    public class TransactionAspect : Castle.DynamicProxy.IInterceptor
     {
-        public TransactionInterceptor(ISessionFactory sessionFactory)
+        public TransactionAspect(ISessionFactory sessionFactory)
         {
             SessionFactory = sessionFactory;
         }

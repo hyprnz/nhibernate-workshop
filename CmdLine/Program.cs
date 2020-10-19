@@ -42,14 +42,14 @@ namespace CmdLine
             containerBuilder.RegisterType<TemplateRepository>()
                    .As<ITemplateRepository>()
                    .EnableInterfaceInterceptors()
-                   .InterceptedBy(typeof(TransactionInterceptor))
+                   .InterceptedBy(typeof(TransactionAspect))
                    ;
             containerBuilder.RegisterType<SessionAccessor>()
                    .As<ISessionAccessor>()
                    ;
 
             var sessionFactory = Database.CreateSessionFactory(); // should be called once only [Manfred]
-            containerBuilder.Register(_ => new TransactionInterceptor(sessionFactory));
+            containerBuilder.Register(_ => new TransactionAspect(sessionFactory));
 
             // Build the container:
             Container = containerBuilder.Build();

@@ -55,14 +55,14 @@ namespace WebApplication
                    ;
             containerBuilder.RegisterType<TemplateController>()
                    .EnableClassInterceptors()
-                   .InterceptedBy(typeof(TransactionInterceptor))
+                   .InterceptedBy(typeof(TransactionAspect))
                    ;
             containerBuilder.RegisterType<SessionAccessor>()
                    .As<ISessionAccessor>()
                    ;
 
             var sessionFactory = Database.CreateSessionFactory(); // should be called once only [Manfred]
-            containerBuilder.Register(_ => new TransactionInterceptor(sessionFactory));
+            containerBuilder.Register(_ => new TransactionAspect(sessionFactory));
         }
 
         // Configuration Method Naming Conventions: more details at:

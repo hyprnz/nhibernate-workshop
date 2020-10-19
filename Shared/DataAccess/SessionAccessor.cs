@@ -19,7 +19,7 @@ namespace Shared.DataAccess
 
         public ISession Session {
             get {
-                return TransactionInterceptor.AsyncLocalSession.Value;
+                return TransactionAspect.AsyncLocalSession.Value;
             }
         }
     }
