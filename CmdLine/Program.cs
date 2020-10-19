@@ -19,12 +19,15 @@ namespace CmdLine
                 var templateRepository = scope.Resolve<ITemplateRepository>();
                 Template retrieved = DoSomethingWithRepository(templateRepository);
                 Console.WriteLine($"{retrieved.Name}");
+                // The following will throw LazyInitializationException as we don't
+                // have a session available here [Manfred]:
+                // Console.WriteLine($"{retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.");
             }
         }
 
         private static Template DoSomethingWithRepository(ITemplateRepository templateRepository)
         {
-            var template = new Template() { Name = "Template42" };
+            var template = new Template() { Name = $"Template {DateTime.Now.Ticks}" };
             var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
             template.Diagnoses.Add(diagnosis1);
             var objectId = templateRepository.Save(template);

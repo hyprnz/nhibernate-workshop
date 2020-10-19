@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Shared.Domain;
 using Shared.Repositories;
+using System;
 
 namespace WebApplication.Controllers
 {
@@ -23,7 +24,7 @@ namespace WebApplication.Controllers
 
         private Template DoSomethingWithRepository()
         {
-            var template = new Template() { Name = "Template42" };
+            var template = new Template() { Name = $"Template {DateTime.Now.Ticks}" };
             var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
             template.Diagnoses.Add(diagnosis1);
             var objectId = TemplateRepository.Save(template);

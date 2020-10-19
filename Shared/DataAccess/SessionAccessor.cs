@@ -4,7 +4,6 @@ using System;
 
 namespace Shared.DataAccess
 {
-
     public class SessionAccessor : ISessionAccessor
     {
         public T Get<T>(Guid id)
