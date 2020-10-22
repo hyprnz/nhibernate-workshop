@@ -23,6 +23,17 @@ Points of interest:
 * Docker Desktop
 * Powershell 7
 
+## Container With Sample Database
+
+No need to install SQL Server. Instead this sample makes use of a Docker container with SQL Server pre-installed. Here is a set of scripts to make this a bit easier if you are not used to Docker Desktop.
+
+To Do This | Use Script
+-----------|-----------
+Build the database container. This also creates the database. | BuildSqlServer.ps1
+Start the database container | StartSqlServer.ps1
+Stop the database container | StopSqlServer.ps1
+Remove the database container. This also deletes the database. | RemoveSqlServer.ps1
+
 ## Technologies Used
 
 * ASP.NET Core 3.1
