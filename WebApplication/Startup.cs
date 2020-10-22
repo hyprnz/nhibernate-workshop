@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shared.DataAccess;
 using Shared.Repositories;
+using Shared.Services;
 using WebApplication.Controllers;
 
 namespace WebApplication
@@ -49,18 +50,28 @@ namespace WebApplication
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            // Usually you're only interested in exposing the type via its interface:
+            // Register repositories
             containerBuilder.RegisterType<TemplateRepository>()
-                   .As<ITemplateRepository>()
-                   ;
-            containerBuilder.RegisterType<TemplateController>()
-                   .EnableClassInterceptors()
-                   .InterceptedBy(typeof(TransactionAspect))
-                   ;
-            containerBuilder.RegisterType<SessionAccessor>()
-                   .As<ISessionAccessor>()
-                   ;
+                .As<ITemplateRepository>()
+                ;
 
+            // Register services
+            containerBuilder.RegisterType<TemplateService>()
+                .As<ITemplateService>()
+                ;
+
+            // Register controllers
+            containerBuilder.RegisterType<TemplateController>()
+                .EnableClassInterceptors()
+                .InterceptedBy(typeof(TransactionAspect))
+                ;
+
+            // Others
+            containerBuilder.RegisterType<SessionAccessor>()
+                .As<ISessionAccessor>()
+                ;
+
+            // Register aspects
             var sessionFactory = Database.CreateSessionFactory(); // should be called once only [Manfred]
             containerBuilder.Register(_ => new TransactionAspect(sessionFactory));
         }

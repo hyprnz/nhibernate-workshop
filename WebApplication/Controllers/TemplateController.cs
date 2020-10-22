@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Shared.Domain;
-using Shared.Repositories;
-using System;
+using Shared.Services;
 
 namespace WebApplication.Controllers
 {
@@ -10,27 +8,18 @@ namespace WebApplication.Controllers
     [Route("[controller]")]
     public class TemplateController : ControllerBase
     {
-        public TemplateController(ITemplateRepository templateRepository)
+        public TemplateController(ITemplateService templateService)
         {
-            TemplateRepository = templateRepository;
+            TemplateService = templateService;
         }
 
         [HttpGet]
         public virtual string Get()
         {
-            var retrieved = DoSomethingWithRepository();
+            var retrieved = TemplateService.Create();
             return $"Template {retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.";
         }
 
-        private Template DoSomethingWithRepository()
-        {
-            var template = new Template() { Name = $"Template {DateTime.Now.Ticks}" };
-            var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
-            template.Diagnoses.Add(diagnosis1);
-            var objectId = TemplateRepository.Save(template);
-            return TemplateRepository.GetById(objectId);
-        }
-
-        private ITemplateRepository TemplateRepository { get; }
+        private ITemplateService TemplateService { get; }
     }
 }
