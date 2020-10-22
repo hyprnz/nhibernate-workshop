@@ -4,6 +4,7 @@ using CmdLine.DataAccess;
 using Shared.DataAccess;
 using Shared.Domain;
 using Shared.Repositories;
+using Shared.Services;
 using System;
 
 namespace CmdLine
@@ -16,22 +17,16 @@ namespace CmdLine
 
             using (var scope = Container.BeginLifetimeScope())
             {
-                var templateRepository = scope.Resolve<ITemplateRepository>();
-                Template retrieved = DoSomethingWithRepository(templateRepository);
-                Console.WriteLine($"{retrieved.Name}");
-                // The following will throw LazyInitializationException as we don't
-                // have a session available here [Manfred]:
-                // Console.WriteLine($"{retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.");
-            }
-        }
+                var templateService = scope.Resolve<ITemplateService>();
+                Template retrieved = templateService.Create();
 
-        private static Template DoSomethingWithRepository(ITemplateRepository templateRepository)
-        {
-            var template = new Template() { Name = $"Template {DateTime.Now.Ticks}" };
-            var diagnosis1 = new Diagnosis() { Name = "Diagnosis1", Template = template };
-            template.Diagnoses.Add(diagnosis1);
-            var objectId = templateRepository.Save(template);
-            return templateRepository.GetById(objectId);
+                Console.WriteLine($"{retrieved.Name}");
+                
+                // The following will throw LazyInitializationException as we applied the aspect to
+                // the repository and not to the service. As a consquence we don't
+                // have a session available here [Manfred]:
+                Console.WriteLine($"{retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.");
+            }
         }
 
         private static void ConfigureServices()
@@ -41,12 +36,19 @@ namespace CmdLine
             // Create your container builder.
             var containerBuilder = new ContainerBuilder();
 
-            // Usually you're only interested in exposing the type via its interface:
+            // Register repositories
             containerBuilder.RegisterType<TemplateRepository>()
-                   .As<ITemplateRepository>()
-                   .EnableInterfaceInterceptors()
-                   .InterceptedBy(typeof(TransactionAspect))
-                   ;
+                .As<ITemplateRepository>()
+                .EnableInterfaceInterceptors()
+                .InterceptedBy(typeof(TransactionAspect))
+                ;
+
+            // Register services
+            containerBuilder.RegisterType<TemplateService>()
+                .As<ITemplateService>()
+                ;
+
+            // Others
             containerBuilder.RegisterType<SessionAccessor>()
                    .As<ISessionAccessor>()
                    ;
