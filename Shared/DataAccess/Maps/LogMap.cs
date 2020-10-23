@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using Shared.Domain;
 
-namespace Shared.DataAccess
+namespace Shared.DataAccess.Maps
 {
     public class LogMap : ClassMap<Log>
     {
