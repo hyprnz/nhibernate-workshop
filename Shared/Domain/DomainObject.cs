@@ -4,6 +4,6 @@ namespace Shared.Domain
 {
     public class DomainObject
     {
-        public virtual Guid Id { get; set; }
+        public virtual Guid Id { get; private set; }
     }
 }
