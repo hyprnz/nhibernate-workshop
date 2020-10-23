@@ -15,7 +15,9 @@ Points of interest:
 * Dependency injection of
   * Service
   * Repository
+  * Session Accessor
 * Repository Pattern
+* UpOnlyMigration
 
 ## Prerequisites
 
@@ -34,6 +36,8 @@ Start the database container | StartSqlServer.ps1
 Stop the database container | StopSqlServer.ps1
 Remove the database container. This also deletes the database. | RemoveSqlServer.ps1
 
+Note that when you run the script `BuildSqlServer.ps1` you may observe error messages. This happens when the container is running but the SQL Server instance is not quite ready to accept connections. The script will try for up to a minute. It should take a lot less than that. Duration is subject to the speed of your computer.
+
 ## Technologies Used
 
 * ASP.NET Core 3.1
@@ -43,4 +47,4 @@ Remove the database container. This also deletes the database. | RemoveSqlServer
 
 ## Notes
 
-* The code in this repository is not suitable for production purposes. It serves as an illustration only.
+* The code in this repository is not suitable for production purposes. It serves as an illustration for NHibernate related concepts only.

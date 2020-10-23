@@ -3,13 +3,8 @@
 namespace Shared.DataAccess.Migrations
 {
     [Migration(20200907_200800)]
-    public class M200200907_AddLogTable : Migration
+    public class M200200907_AddLogTable : UpOnlyMigration
     {
-        public override void Down()
-        {
-            Delete.Table("Log");
-        }
-
         public override void Up()
         {
             Create.Table("Log")

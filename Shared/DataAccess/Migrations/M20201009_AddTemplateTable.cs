@@ -1,16 +1,10 @@
 ﻿using FluentMigrator;
-using System;
 
 namespace Shared.DataAccess.Migrations
 {
     [Migration(20201009_1511)]
-    public class M20201009_AddTemplateTable : Migration
+    public class M20201009_AddTemplateTable : UpOnlyMigration
     {
-        public override void Down()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Up()
         {
             Create.Table("Template")

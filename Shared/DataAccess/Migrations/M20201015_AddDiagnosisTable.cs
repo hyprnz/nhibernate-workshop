@@ -1,16 +1,10 @@
 ﻿using FluentMigrator;
-using System;
 
 namespace Shared.DataAccess.Migrations
 {
     [Migration(20201015_1518)]
-    public class M20201015_AddDiagnosisTable : Migration
+    public class M20201015_AddDiagnosisTable : UpOnlyMigration
     {
-        public override void Down()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Up()
         {
             const string tableName = "Diagnosis";
