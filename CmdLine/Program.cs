@@ -25,7 +25,7 @@ namespace CmdLine
                 // The following will throw LazyInitializationException as we applied the aspect to
                 // the repository and not to the service. As a consquence we don't
                 // have a session available here [Manfred]:
-                Console.WriteLine($"{retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.");
+                // Console.WriteLine($"{retrieved.Name} has {retrieved.Diagnoses.Count} diagnoses.");
             }
         }
 
@@ -48,7 +48,7 @@ namespace CmdLine
                 .As<ITemplateService>()
                 ;
 
-            // Others
+            // Register other components
             containerBuilder.RegisterType<SessionAccessor>()
                    .As<ISessionAccessor>()
                    ;

@@ -1,2 +1,2 @@
-# Stop SQL Server
+# Stop container with SQL Server instance
 docker stop nhibernate-workshop
