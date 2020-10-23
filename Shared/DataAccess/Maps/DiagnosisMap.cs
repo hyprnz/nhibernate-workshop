@@ -1,5 +1,4 @@
-﻿using FluentNHibernate.Mapping;
-using Shared.Domain;
+﻿using Shared.Domain;
 
 namespace Shared.DataAccess.Maps
 {
