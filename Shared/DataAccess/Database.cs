@@ -68,6 +68,6 @@ namespace Shared.DataAccess
             runner.MigrateUp();
         }
 
-        private const string ConnectionString = "Data Source=localhost;Initial Catalog=nhibernate-workshop;Persist Security Info=True;User ID=sa;Password=PassWord42;Pooling=False";
+        private const string ConnectionString = "Server=localhost;Initial Catalog=nhibernate-workshop;Persist Security Info=True;User ID=sa;Password=PassWord42;Pooling=False";
     }
 }
